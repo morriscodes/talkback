@@ -32,7 +32,6 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.accessibility.AccessibilityEvent;
-
 import com.android.utils.AccessibilityEventUtils;
 import com.google.android.marvin.talkback.TalkBackService;
 
@@ -59,7 +58,7 @@ public class TalkBackDumpAccessibilityEventActivity extends Activity {
                 new TalkBackDumpAccessibilityEventFragment();
         mListener = fragment;
         getFragmentManager().beginTransaction()
-                .replace(android.R.id.content, fragment).commit();
+                            .replace(android.R.id.content, fragment).commit();
     }
 
     /**
@@ -69,15 +68,14 @@ public class TalkBackDumpAccessibilityEventActivity extends Activity {
      */
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()) {
-            case android.R.id.home:
-                finish();
-                return true;
-            case R.id.clear_all:
-            case R.id.check_all:
-                return mListener.onMenuItemClick(item);
-            default:
-                return super.onOptionsItemSelected(item);
+        if (item.getItemId() == android.R.id.home) {
+            finish();
+            return true;
+        } else if (item.getItemId() == R.id.clear_all ||
+                   item.getItemId() == R.id.check_all) {
+            return mListener.onMenuItemClick(item);
+        } else {
+            return super.onOptionsItemSelected(item);
         }
     }
 
@@ -152,15 +150,14 @@ public class TalkBackDumpAccessibilityEventActivity extends Activity {
 
         @Override
         public boolean onMenuItemClick(MenuItem menuItem) {
-            switch (menuItem.getItemId()) {
-                case R.id.clear_all:
-                    setAllPreferenceValue(false);
-                    return true;
-                case R.id.check_all:
-                    setAllPreferenceValue(true);
-                    return true;
-                default:
-                    return false;
+            if (menuItem.getItemId() == R.id.clear_all) {
+                setAllPreferenceValue(false);
+                return true;
+            } else if (menuItem.getItemId() == R.id.check_all) {
+                setAllPreferenceValue(true);
+                return true;
+            } else {
+                return false;
             }
         }
 
@@ -170,7 +167,7 @@ public class TalkBackDumpAccessibilityEventActivity extends Activity {
                 String prefKey = preference.getKey();
                 int index = mDumpEventPrefKeys.indexOf(prefKey);
                 mService.notifyDumpEventPreferenceChanged(DUMP_A11Y_EVENT_IDS[index],
-                        (boolean) newValue);
+                                                          (boolean) newValue);
             }
             return true;
         }

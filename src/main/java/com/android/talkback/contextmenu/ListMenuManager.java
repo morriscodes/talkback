@@ -220,12 +220,11 @@ public class ListMenuManager implements MenuManager, AccessibilityEventListener 
             return false;
         }
 
-        switch (actionId) {
-            case R.id.pause_feedback:
-            case R.id.talkback_settings:
-            case R.id.enable_dimming:
-            case R.id.disable_dimming:
-            case R.id.tts_settings:
+        if(actionId == R.id.pause_feedback ||
+           actionId == R.id.talkback_settings ||
+           actionId == R.id.enable_dimming ||
+           actionId == R.id.disable_dimming ||
+           actionId == R.id.tts_settings) {
                 return false;
         }
 

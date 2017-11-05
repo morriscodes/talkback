@@ -3,7 +3,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     package="com.android.talkback"
     android:installLocation="internalOnly"
-    android:sharedUserId="com.google.android.marvin.feedback"
     android:versionCode="50007000">
 
     <!-- Permission used to restrict sending gestures and resuming feedback. -->
@@ -58,8 +57,6 @@
         android:required="false" />
 
     <application
-        android:icon="@drawable/icon"
-        android:label="@string/talkback_title"
         android:supportsRtl="true">
 
         <receiver android:name=".BootReceiver"
