@@ -137,7 +137,7 @@ public class TalkBackService extends AccessibilityService
 
     /** Permission required to perform gestures. */
     public static final String PERMISSION_TALKBACK =
-            "com.google.android.marvin.feedback.permission.TALKBACK";
+            "com.comcast.feedback.permission.TALKBACK";
 
     /** The intent action used to perform a custom gesture action. */
     public static final String ACTION_PERFORM_GESTURE_ACTION = "performCustomGestureAction";
