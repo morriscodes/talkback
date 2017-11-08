@@ -943,57 +943,58 @@ public class TalkBackPreferencesActivity extends Activity {
          */
         private void showTalkBackVersion() {
             Activity activity = getActivity();
-            if (activity == null) {
-                return;
-            }
-
-            PackageInfo packageInfo = getPackageInfo(activity);
-            if (packageInfo == null) {
-                return;
-            }
-
-            final Preference playStoreButton = findPreferenceByResId(R.string.pref_play_store_key);
-            if (playStoreButton == null) {
-                return;
-            }
-
-            if (GooglePlayServicesUtil.isGooglePlayServicesAvailable(activity)
-                    != ConnectionResult.SUCCESS) {
-                // Not needed, but playing safe since this is hard to test outside of China
-                playStoreButton.setIntent(null);
-                final PreferenceGroup category = (PreferenceGroup)
-                        findPreferenceByResId(R.string.pref_category_miscellaneous_key);
-                if (category != null) {
-                    category.removePreference(playStoreButton);
-                }
-            }
-
-            if (playStoreButton.getIntent() != null &&
-                    activity.getPackageManager().queryIntentActivities(
-                            playStoreButton.getIntent(), 0).size() == 0) {
-                // Not needed, but playing safe since this is hard to test outside of China
-                playStoreButton.setIntent(null);
-                final PreferenceGroup category = (PreferenceGroup)
-                        findPreferenceByResId(R.string.pref_category_miscellaneous_key);
-                if (category != null) {
-                    category.removePreference(playStoreButton);
-                }
-            } else {
-                final String versionNumber = String.valueOf(packageInfo.versionCode);
-                final int length = versionNumber.length();
-
-                playStoreButton.setSummary(getString(R.string.summary_pref_play_store,
-                        String.valueOf(Integer.parseInt(versionNumber.substring(0, length-7))) +
-                                "." +
-                                String.valueOf(Integer.parseInt(
-                                        versionNumber.substring(length-7, length-5))) +
-                                "." +
-                                String.valueOf(Integer.parseInt(
-                                        versionNumber.substring(length-5, length-3))) +
-                                "." +
-                                String.valueOf(Integer.parseInt(
-                                        versionNumber.substring(length-3)))));
-            }
+            return;
+//            if (activity == null) {
+//                return;
+//            }
+//
+//            PackageInfo packageInfo = getPackageInfo(activity);
+//            if (packageInfo == null) {
+//                return;
+//            }
+//
+//            final Preference playStoreButton = findPreferenceByResId(R.string.pref_play_store_key);
+//            if (playStoreButton == null) {
+//                return;
+//            }
+//
+//            if (GooglePlayServicesUtil.isGooglePlayServicesAvailable(activity)
+//                    != ConnectionResult.SUCCESS) {
+//                // Not needed, but playing safe since this is hard to test outside of China
+//                playStoreButton.setIntent(null);
+//                final PreferenceGroup category = (PreferenceGroup)
+//                        findPreferenceByResId(R.string.pref_category_miscellaneous_key);
+//                if (category != null) {
+//                    category.removePreference(playStoreButton);
+//                }
+//            }
+//
+//            if (playStoreButton.getIntent() != null &&
+//                    activity.getPackageManager().queryIntentActivities(
+//                            playStoreButton.getIntent(), 0).size() == 0) {
+//                // Not needed, but playing safe since this is hard to test outside of China
+//                playStoreButton.setIntent(null);
+//                final PreferenceGroup category = (PreferenceGroup)
+//                        findPreferenceByResId(R.string.pref_category_miscellaneous_key);
+//                if (category != null) {
+//                    category.removePreference(playStoreButton);
+//                }
+//            } else {
+//                final String versionNumber = String.valueOf(packageInfo.versionCode);
+//                final int length = versionNumber.length();
+//
+//                playStoreButton.setSummary(getString(R.string.summary_pref_play_store,
+//                        String.valueOf(Integer.parseInt(versionNumber.substring(0, length-7))) +
+//                                "." +
+//                                String.valueOf(Integer.parseInt(
+//                                        versionNumber.substring(length-7, length-5))) +
+//                                "." +
+//                                String.valueOf(Integer.parseInt(
+//                                        versionNumber.substring(length-5, length-3))) +
+//                                "." +
+//                                String.valueOf(Integer.parseInt(
+//                                        versionNumber.substring(length-3)))));
+//            }
         }
 
         private void hidePreferencesForArc() {
