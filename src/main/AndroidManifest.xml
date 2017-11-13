@@ -3,12 +3,11 @@
     xmlns:tools="http://schemas.android.com/tools"
     package="com.android.talkback"
     android:installLocation="internalOnly"
-    android:sharedUserId="com.google.android.marvin.feedback"
     android:versionCode="50007000">
 
     <!-- Permission used to restrict sending gestures and resuming feedback. -->
     <permission
-        android:name="com.google.android.marvin.feedback.permission.TALKBACK"
+        android:name="com.comcast.feedback.permission.TALKBACK"
         android:description="@string/permission_talkback_desc"
         android:icon="@drawable/icon"
         android:label="@string/permission_talkback_label"
@@ -16,7 +15,7 @@
 
     <!-- Permission used to restrict storing and retrieving custom view labels. -->
     <permission
-        android:name="com.google.android.marvin.talkback.permission.LABELING"
+        android:name="com.comcast.talkback.permission.LABELING"
         android:description="@string/permission_labeling_desc"
         android:icon="@drawable/icon"
         android:label="@string/permission_labeling_label"
@@ -35,10 +34,10 @@
     <uses-permission android:name="android.permission.WAKE_LOCK" />
 
     <!-- Required for shortcuts and widgets. -->
-    <uses-permission android:name="com.google.android.marvin.feedback.permission.TALKBACK" />
+    <uses-permission android:name="com.comcast.feedback.permission.TALKBACK" />
 
     <!-- Required for labeling. -->
-    <uses-permission android:name="com.google.android.marvin.talkback.permission.LABELING" />
+    <uses-permission android:name="com.comcast.talkback.permission.LABELING" />
 
     <!-- Required for managing audio levels on GB. -->
     <uses-permission android:name="android.permission.MODIFY_AUDIO_SETTINGS" />
@@ -58,8 +57,6 @@
         android:required="false" />
 
     <application
-        android:icon="@drawable/icon"
-        android:label="@string/talkback_title"
         android:supportsRtl="true">
 
         <receiver android:name=".BootReceiver"
@@ -242,8 +239,8 @@
             android:name=".labeling.LabelProvider"
             android:authorities="${applicationId}.providers.LabelProvider"
             android:exported="true"
-            android:readPermission="com.google.android.marvin.talkback.permission.LABELING"
-            android:writePermission="com.google.android.marvin.talkback.permission.LABELING"
+            android:readPermission="com.comcast.talkback.permission.LABELING"
+            android:writePermission="com.comcast.talkback.permission.LABELING"
             android:directBootAware="true" />
 
         <provider
@@ -283,9 +280,6 @@
             android:enabled="@bool/atLeastL" >
         </activity>
 
-        <meta-data
-            android:name="com.google.android.gms.version"
-            android:value="@integer/google_play_services_version" />
     </application>
 
 </manifest>

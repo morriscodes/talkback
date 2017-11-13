@@ -19,20 +19,16 @@ package com.android.talkback.tutorial;
 import android.app.ActionBar;
 import android.app.Activity;
 import android.app.Fragment;
-import android.content.res.Resources;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
 import android.support.v4.content.LocalBroadcastManager;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.accessibility.AccessibilityEvent;
-import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toolbar;
 import com.android.talkback.R;
 import com.android.talkback.SpeechController;
 import com.android.talkback.contextmenu.MenuActionInterceptor;
@@ -43,7 +39,7 @@ import com.android.talkback.tutorial.exercise.Exercise;
 import com.google.android.marvin.talkback.TalkBackService;
 
 public class TutorialLessonFragment extends Fragment implements View.OnClickListener,
-        Exercise.ExerciseCallback, GestureActionMonitor.GestureActionListener {
+                                                                Exercise.ExerciseCallback, GestureActionMonitor.GestureActionListener {
 
     private static final int DELAY_BEFORE_ANNOUNCE_LESSON = 100;
     private static final int DELAY_BEFORE_AUTO_MOVE_TO_NEXT_LESSON = 1000;
@@ -151,7 +147,7 @@ public class TutorialLessonFragment extends Fragment implements View.OnClickList
                     findViewById(R.id.action_bar_title);
             title.setText(getTitle());
             LocalBroadcastManager.getInstance(activity).registerReceiver(mActionMonitor,
-                    GestureActionMonitor.FILTER);
+                                                                         GestureActionMonitor.FILTER);
         }
 
         TalkBackService service = TalkBackService.getInstance();
@@ -206,7 +202,7 @@ public class TutorialLessonFragment extends Fragment implements View.OnClickList
             next.setText(R.string.tutorial_next);
             currentPage.setVisibility(View.VISIBLE);
             currentPage.setText(getString(R.string.tutorial_page_number_of, mCurrentPage + 1,
-                    mLesson.getPagesCount() - 1));
+                                          mLesson.getPagesCount() - 1));
         } else if (mTutorialController.getNextLesson(mLesson) == null) {
             next.setText(R.string.tutorial_home);
         } else {
@@ -229,20 +225,16 @@ public class TutorialLessonFragment extends Fragment implements View.OnClickList
 
     @Override
     public void onClick(View v) {
-        switch (v.getId()) {
-            case R.id.next:
-                if (mCallback != null) {
-                    mCallback.onNextPageClicked(mLesson, mCurrentPage);
-                }
-                break;
-            case R.id.previous_page:
-                if (mCallback != null) {
-                    mCallback.onPreviousPageClicked(mLesson, mCurrentPage);
-                }
-                break;
-            case R.id.up:
-                mCallback.onNavigateUpClicked();
-                break;
+        if (v.getId() == R.id.next) {
+            if (mCallback != null) {
+                mCallback.onNextPageClicked(mLesson, mCurrentPage);
+            }
+        } else if (v.getId() == R.id.previous_page) {
+            if (mCallback != null) {
+                mCallback.onPreviousPageClicked(mLesson, mCurrentPage);
+            }
+        } else if (v.getId() == R.id.up) {
+            mCallback.onNavigateUpClicked();
         }
     }
 
@@ -275,8 +267,8 @@ public class TutorialLessonFragment extends Fragment implements View.OnClickList
             @Override
             public void run() {
                 mSpeechController.speak(getString(completeMessageResId), null,
-                        null, SpeechController.QUEUE_MODE_UNINTERRUPTIBLE, 0, 0,
-                        null, null, callback);
+                                        null, SpeechController.QUEUE_MODE_UNINTERRUPTIBLE, 0, 0,
+                                        null, null, callback);
             }
         }, DELAY_BEFORE_AUTO_MOVE_TO_NEXT_LESSON);
     }
