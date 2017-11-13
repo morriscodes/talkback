@@ -61,8 +61,6 @@ import com.android.utils.AccessibilityEventUtils;
 import com.android.utils.LogUtils;
 import com.android.utils.PackageManagerUtils;
 import com.android.utils.SharedPreferencesUtils;
-import com.google.android.gms.common.ConnectionResult;
-import com.google.android.gms.common.GooglePlayServicesUtil;
 import com.google.android.marvin.talkback.TalkBackService;
 
 import java.util.HashSet;
