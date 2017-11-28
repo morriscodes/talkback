@@ -32,6 +32,8 @@ android {
         minSdkVersion 16
         targetSdkVersion 24
         testInstrumentationRunner 'android.test.InstrumentationTestRunner'
+
+        resConfigs "en", "es"
     }
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_7

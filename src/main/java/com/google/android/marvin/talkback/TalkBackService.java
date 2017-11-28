@@ -1450,30 +1450,30 @@ public class TalkBackService extends AccessibilityService
      * Launches the touch exploration tutorial if necessary.
      */
     public boolean showTutorial() {
-        if (isInArc()) {
-            return false;
-        }
-
-        boolean isDeviceProvisioned = true;
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR1) {
-            isDeviceProvisioned = Settings.Secure
-                    .getInt(getContentResolver(), Settings.Global.DEVICE_PROVISIONED, 1) != 0;
-        }
-
-        if (isDeviceProvisioned && !isFirstTimeUser()) {
-            return false;
-        }
-
-        final int touchscreenState = getResources().getConfiguration().touchscreen;
-
-        if (touchscreenState != Configuration.TOUCHSCREEN_NOTOUCH
-                && mSupportsTouchScreen) {
-            final Intent tutorial = new Intent(this, AccessibilityTutorialActivity.class);
-            tutorial.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-            tutorial.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-            startActivity(tutorial);
-            return true;
-        }
+//        if (isInArc()) {
+//            return false;
+//        }
+//
+//        boolean isDeviceProvisioned = true;
+//        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR1) {
+//            isDeviceProvisioned = Settings.Secure
+//                    .getInt(getContentResolver(), Settings.Global.DEVICE_PROVISIONED, 1) != 0;
+//        }
+//
+//        if (isDeviceProvisioned && !isFirstTimeUser()) {
+//            return false;
+//        }
+//
+//        final int touchscreenState = getResources().getConfiguration().touchscreen;
+//
+//        if (touchscreenState != Configuration.TOUCHSCREEN_NOTOUCH
+//                && mSupportsTouchScreen) {
+//            final Intent tutorial = new Intent(this, AccessibilityTutorialActivity.class);
+//            tutorial.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+//            tutorial.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+//            startActivity(tutorial);
+//            return true;
+//        }
 
         return false;
     }
@@ -1640,7 +1640,7 @@ public class TalkBackService extends AccessibilityService
                     // Double-check that TalkBack is still available before we try to disable it.
                     TalkBackService service = TalkBackService.getInstance();
                     if (service != null) {
-                        service.disableSelf();
+//                        service.disableSelf();
                     }
                 }
             };
